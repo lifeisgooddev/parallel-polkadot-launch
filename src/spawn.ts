@@ -260,14 +260,9 @@ export function startCollator(
 		p[wsPort].stdout.pipe(log);
 		p[wsPort].stderr.on("data", function (chunk) {
 			let message = chunk.toString();
-			let ready =
-				message.includes("Running JSON-RPC WS server:") ||
-				message.includes("Listening for new connections");
-			if (ready) {
-				resolve();
-			}
 			log.write(message);
 		});
+		resolve();
 	});
 }
 

@@ -1,6 +1,6 @@
 {
 	"relaychain": {
-		"bin": "./bin/polkadot",
+		"bin": "../polkadot/target/release/polkadot",
 		"chain": "rococo-local",
 		"nodes": [
 			{
@@ -39,49 +39,54 @@
 	},
 	"parachains": [
 		{
-			"bin": "./bin/polkadot-parachain",
-			"id": "200",
-			"balance": "1000000000000000000000",
+			"bin": "../parallel/target/release/parallel",
+			"chain": "vanilla-dev",
 			"nodes": [
 				{
 					"wsPort": 9988,
 					"port": 31200,
+					"rpcPort":39988,
 					"name": "alice",
-					"flags": ["--", "--execution=wasm"]
-				}
-			]
-		},
-		{
-			"bin": "./bin/polkadot-parachain",
-			"id": "300",
-			"balance": "1000000000000000000000",
-			"nodes": [
+					"flags": [
+						"-l",
+						"eth=trace,xcm=trace,loans=trace,liquidStaking=trace,crowdloans=trace,amm=trace,stableswap=trace,router=trace,bridge=trace",
+						"--state-cache-size",
+						"0",
+						"--rpc-cors",
+						"all",
+						"--unsafe-ws-external",
+						"--unsafe-rpc-external",
+						"--",
+						"--execution=wasm",
+						"--state-cache-size",
+						"0"
+					]
+				},
 				{
-					"wsPort": 9999,
-					"port": 31300,
-					"name": "alice",
-					"flags": ["--", "--execution=wasm"]
+					"wsPort": 9989,
+					"port": 31201,
+					"rpcPort":39989,
+					"name": "bob",
+					"flags": [
+						"-l",
+						"eth=trace,xcm=trace,loans=trace,liquidStaking=trace,crowdloans=trace,amm=trace,stableswap=trace,router=trace,bridge=trace",
+						"--state-cache-size",
+						"0",
+						"--rpc-cors",
+						"all",
+						"--unsafe-ws-external",
+						"--unsafe-rpc-external",
+						"--",
+						"--execution=wasm",
+						"--state-cache-size",
+						"0"
+					]
 				}
 			]
 		}
 	],
-	"simpleParachains": [
-		{
-			"bin": "./bin/adder-collator",
-			"id": "400",
-			"port": "31400",
-			"name": "alice",
-			"balance": "1000000000000000000000"
-		}
-	],
-	"hrmpChannels": [
-		{
-			"sender": 200,
-			"recipient": 300,
-			"maxCapacity": 8,
-			"maxMessageSize": 512
-		}
-	],
+	"simpleParachains": [],
+	"hrmpChannels": [],
 	"types": {},
 	"finalization": false
 }
