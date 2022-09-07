@@ -1,6 +1,6 @@
 {
 	"relaychain": {
-		"bin": "../polkadot/target/release/polkadot",
+		"bin": "../../../polkadot/target/release/polkadot",
 		"chain": "rococo-local",
 		"nodes": [
 			{
@@ -39,7 +39,7 @@
 	},
 	"parachains": [
 		{
-			"bin": "../parallel/target/release/parallel",
+			"bin": "../../target/release/parallel",
 			"chain": "vanilla-dev",
 			"nodes": [
 				{
